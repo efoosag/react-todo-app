@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable no-unused-vars */
 /* eslint-disable function-paren-newline */
 /* eslint-disable comma-dangle */
@@ -14,7 +15,32 @@ import NotMatch from '../pages/NotMatch';
 import Navbar from './Navbar';
 
 const TodoContainer = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(getInitialTodos());
+
+  // useEffect(() => {
+  //   console.log('test run');
+
+  //   // getting stored items
+  //   const temp = localStorage.getItem('todos');
+  //   const loadedTodos = JSON.parse(temp);
+
+  //   if (loadedTodos) {
+  //     setTodos(loadedTodos);
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    // storing todos items
+    const temp = JSON.stringify(todos);
+    localStorage.setItem('todos', temp);
+  }, [todos]);
+
+  function getInitialTodos() {
+    // getting stored items
+    const temp = localStorage.getItem('todos');
+    const savedTodos = JSON.parse(temp);
+    return savedTodos || [];
+  }
 
   const handleChange = (id) => {
     setTodos((prevState) =>
@@ -53,31 +79,6 @@ const TodoContainer = () => {
       })
     );
   };
-
-  // useEffect(() => {
-  //   console.log('test run');
-
-  //   // getting stored items
-  //   const temp = localStorage.getItem('todos');
-  //   const loadedTodos = JSON.parse(temp);
-
-  //   if (loadedTodos) {
-  //     setTodos(loadedTodos);
-  //   }
-  // }, []);
-
-  function getInitialTodos() {
-    // getting stored items
-    const temp = localStorage.getItem('todos');
-    const savedTodos = JSON.parse(temp);
-    return savedTodos || [];
-  }
-
-  useEffect(() => {
-    // storing todos items
-    const temp = JSON.stringify(todos);
-    localStorage.setItem('todos', temp);
-  }, [todos]);
 
   return (
     <>

@@ -1,11 +1,11 @@
 /* eslint-disable arrow-parens */
 /* eslint-disable arrow-body-style */
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import TodoItem from './TodoItem';
 
 const TodosList = (props) => {
+  console.log(props);
   return (
     <ul>
       {props.todos.map((todo) => (
