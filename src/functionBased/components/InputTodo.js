@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React, { useState } from 'react';
 
 const InputTodo = (props) => {
@@ -34,7 +36,9 @@ const InputTodo = (props) => {
         name="title"
         onChange={onChange}
       />
-      <button className="input-submit">Submit</button>
+      <button type="button" className="input-submit">
+        Submit
+      </button>
     </form>
   );
 };
