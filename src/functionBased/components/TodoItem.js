@@ -1,3 +1,6 @@
+/* eslint-disable comma-dangle */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
 import styles from './TodoItem.module.css';
 
@@ -23,8 +26,8 @@ const TodoItem = (props) => {
 
   const { completed, id, title } = props.todo;
 
-  let viewMode = {};
-  let editMode = {};
+  const viewMode = {};
+  const editMode = {};
 
   if (editing) {
     viewMode.display = 'none';
@@ -32,11 +35,12 @@ const TodoItem = (props) => {
     editMode.display = 'none';
   }
 
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       console.log('Cleaning up...');
-    };
-  }, []);
+    },
+    []
+  );
 
   return (
     <li className={styles.item}>
@@ -47,7 +51,9 @@ const TodoItem = (props) => {
           checked={completed}
           onChange={() => props.handleChangeProps(id)}
         />
-        <button onClick={() => props.deleteTodoProps(id)}>Delete</button>
+        <button type="button" onClick={() => props.deleteTodoProps(id)}>
+          Delete
+        </button>
         <span style={completed ? completedStyle : null}>{title}</span>
       </div>
       <input

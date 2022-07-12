@@ -5,6 +5,7 @@ class TodoItem extends React.Component {
   state = {
     editing: false,
   };
+
   handleEditing = () => {
     this.setState({
       editing: true,
@@ -15,9 +16,11 @@ class TodoItem extends React.Component {
   handleUpdatedDone = (event) => {
     console.log(event.key);
   };
+
   componentWillUnmount() {
     console.log('Cleaning up...');
   }
+
   render() {
     const completedStyle = {
       fontStyle: 'italic',
@@ -26,8 +29,8 @@ class TodoItem extends React.Component {
       textDecoration: 'line-through',
     };
     const { completed, id, title } = this.props.todo;
-    let viewMode = {};
-    let editMode = {};
+    const viewMode = {};
+    const editMode = {};
 
     if (this.state.editing) {
       viewMode.display = 'none';
