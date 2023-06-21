@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TodoItem({ itemTodo, handleChange }) {
+function TodoItem({ itemTodo, handleChange, deleteTodo }) {
   return (
 
     <li>
@@ -10,6 +10,7 @@ function TodoItem({ itemTodo, handleChange }) {
         onChange={() => handleChange(itemTodo.id)}
       />
       {itemTodo.title}
+      <button type="button" onClick={() => deleteTodo(itemTodo.id)}>delete</button>
     </li>
   );
 }
