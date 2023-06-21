@@ -39,9 +39,18 @@ function TodosLogic() {
     ]);
   };
 
+  const addTodoItem = (title) => {
+    const newTodo = {
+      id: todos.length + 1,
+      title,
+      completed: false,
+    };
+    setTodos([...todos, newTodo]);
+  };
+
   return (
     <div>
-      <InputTodo />
+      <InputTodo addTodoItem={addTodoItem} />
       <TodosList todosProps={todos} handleChange={handleChange} deleteTodo={deleteTodo} />
     </div>
   );
