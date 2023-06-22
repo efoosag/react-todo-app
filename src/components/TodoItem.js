@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styles from './styles/TodoItem.module.css';
 
 function TodoItem({
   itemTodo, handleChange, deleteTodo, setUpdateTitle,
 }) {
+  const editInputRef = useRef();
   const [edit, setEdit] = useState(false);
   const viewMode = { };
   const editMode = { };
@@ -19,6 +20,7 @@ function TodoItem({
   };
   const handleUpdatedDone = (e) => {
     if (e.key === 'Enter') {
+      setUpdateTitle(editInputRef.current.value, itemTodo.id);
       setEdit(false);
     }
   };
@@ -37,10 +39,10 @@ function TodoItem({
       </div>
       <input
         type="text"
-        value={itemTodo.title}
+        ref={editInputRef}
+        defaultValue={itemTodo.title}
         className={styles.textInput}
         style={editMode}
-        onChange={(e) => setUpdateTitle(e.target.value, itemTodo.id)}
         onKeyDown={handleUpdatedDone}
 
       />
