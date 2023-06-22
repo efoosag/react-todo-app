@@ -1,8 +1,11 @@
 import React from 'react';
+import styles from './styles/Header.module.css';
 
 function Header() {
   return (
-    <div>Header</div>
+    <header className={styles.headerStyle}>
+      <h1>Todo List</h1>
+    </header>
   );
 }
 

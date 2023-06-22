@@ -1,0 +1,10 @@
+.headerStyle {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.5em;
+    text-transform: capitalize;
+    text-align: center;
+    padding: 20px 0;
+    color: #aeadad;
+  };

@@ -2,20 +2,29 @@ import React, { useState } from 'react';
 
 function InputTodo({ addTodoItem }) {
   const [title, setTitle] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
     setTitle(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTodoItem(title);
-    setTitle('');
+    if (title.trim()) {
+      addTodoItem(title);
+      setTitle('');
+      setMessage('');
+    } else {
+      setMessage('Please add item');
+    }
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" placeholder="Add Task" value={title} onChange={handleChange} />
-      <button type="submit">Submit</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit} className="form-container">
+        <input type="text" placeholder="Add Task" value={title} onChange={handleChange} className="input-text" />
+        <button type="submit" className="input-submit">Submit</button>
+      </form>
+      <span className="submit-warning">{message}</span>
+    </>
   );
 }
 
